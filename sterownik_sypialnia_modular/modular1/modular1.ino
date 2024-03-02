@@ -39,30 +39,41 @@ void serial_read_if(void){
     //Jeśli tak, to odczytujemy je do znaku końca linii i zapisz w zmiennej odebraneDane
     odebraneDane = Serial.readStringUntil('\n'); 
     
-    if (odebraneDane == "sufiton") { //Jeśli odebrano słowo "zielona"
-      digitalWrite(zielona, HIGH); //To włączamy diodę zieloną
-      delay(1000);
-      digitalWrite(zielona, LOW); 
-    }
-    
-    if (odebraneDane == "sufitoff") { //Jeśli odebrano słowo "czerwona"
-      digitalWrite(czerwona, HIGH); //To włączamy diodę czerwoną
-      delay(1000);
-      digitalWrite(czerwona, LOW); 
+    if (odebraneDane == "sufiton") strip.setBrightness(20);
+    if (odebraneDane == "s1") strip.setBrightness(10);
+    if (odebraneDane == "s2") strip.setBrightness(20);
+    if (odebraneDane == "s3") strip.setBrightness(30);
+    if (odebraneDane == "s4") strip.setBrightness(40);
+    if (odebraneDane == "s5") strip.setBrightness(50);
+    if (odebraneDane == "s6") strip.setBrightness(60);
+    if (odebraneDane == "s7") strip.setBrightness(70);
+    if (odebraneDane == "s8") strip.setBrightness(80);
+    if (odebraneDane == "s9") strip.setBrightness(90);
+    if (odebraneDane == "s10") strip.setBrightness(100);
+    if (odebraneDane == "s0") strip.setBrightness(0)
+    if (odebraneDane == "sufitoff") strip.setBrightness(0);
+
+
+
+    if (odebraneDane == "tvon") {
+      digitalWrite(tvled, HIGH);
     }
 
-    if (odebraneDane == "tvon") { //Jeśli odebrano słowo "czerwona"
-      digitalWrite(czerwona, HIGH); //To włączamy diodę czerwoną
-      delay(1000);
-      digitalWrite(czerwona, LOW); 
+    if (odebraneDane == "tvoff") {
+      digitalWrite(tvled, LOW); 
     }
 
-    if (odebraneDane == "tvoff") { //Jeśli odebrano słowo "czerwona"
-      digitalWrite(czerwona, HIGH); //To włączamy diodę czerwoną
-      delay(1000);
-      digitalWrite(czerwona, LOW); 
+    if (odebraneDane == "temp") {
+      digitalWrite(tvled, LOW); 
     }
 
+    if (odebraneDane == "lcd1on") {
+      digitalWrite(tvled, LOW); 
+    }
+
+    if (odebraneDane == "lcd1off") {
+      digitalWrite(tvled, LOW); 
+    }
 
   }
 }
