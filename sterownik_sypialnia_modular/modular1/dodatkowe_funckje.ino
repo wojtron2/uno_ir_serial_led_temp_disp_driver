@@ -25,3 +25,6 @@ void pomiar_napiecia_kanal(int kanal){
   Serial.println(napiecie);//Wysyłamy zmierzone napięcie
   delay(200);//Czekamy, aby wygodniej odczytywać wyniki  
 }
+
+
+*/

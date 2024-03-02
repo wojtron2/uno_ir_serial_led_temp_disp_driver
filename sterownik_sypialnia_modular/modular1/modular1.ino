@@ -5,23 +5,25 @@
 
 #define PINLED1 13
 #define NUM_LEDS 300
+#define tvled 
+#define pinIR 2
+
+//#define kanal kanaladc
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(300, PINLED1, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   strip.begin();
-  strip.setBrightness(30);
+  strip.setBrightness(0);
   strip.show(); // Initialize all pixels to 'off'
+  Serial.begin(115200);
 
   //strip2.begin();
   //strip2.setBrightness(100);
   //strip2.show(); // Initialize all pixels to 'off'
-  pinMode(BUTTON, INPUT_PULLUP); // internal pull-up resistor
-  attachInterrupt (digitalPinToInterrupt (BUTTON), changeEffect, CHANGE); // pressed
+//  pinMode(BUTTON, INPUT_PULLUP); // internal pull-up resistor
+//  attachInterrupt (digitalPinToInterrupt (BUTTON), changeEffect, CHANGE); // pressed
   //attachInterrupt(0, changeEffect, CHANGE);
-
-  strip.begin();
-  strip.setBrightness(0);
 }
 
 
