@@ -13,6 +13,10 @@
 #define tvled 6
 #define pinIR 2
 
+#define pinR 9
+#define pinG 10
+#define pinB 11
+
 //#define kanal kanaladc
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(300, PINLED1, NEO_GRB + NEO_KHZ800);
@@ -24,7 +28,9 @@ void setup() {
   strip.setBrightness(0);
   strip.show(); // Initialize all pixels to 'off'
   Serial.begin(115200);
+
   attachInterrupt(digitalPinToInterrupt(pinIR), IR_receive_function, CHANGE);
+  pinMode(tvled, INPUT_PULLUP);
 
   //strip2.begin();
   //strip2.setBrightness(100);
