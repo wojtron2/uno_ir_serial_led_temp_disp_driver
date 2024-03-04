@@ -38,7 +38,7 @@ void setup() {
 
 void loop() {
 
-
+serial_read_if();
 
 
   }
@@ -63,7 +63,7 @@ void serial_read_if(void){
     if (odebraneDane == "s0") strip.setBrightness(0);
     if (odebraneDane == "sufitoff") strip.setBrightness(0);
 
-    if (odebraneDane == "tv0") analogWrite(czerwona, 0);
+    if (odebraneDane == "tv0") analogWrite(tvled, 0);
     if (odebraneDane == "tv1") analogWrite(tvled, 10);
     if (odebraneDane == "tv2") analogWrite(tvled, 20);
     if (odebraneDane == "tv3") analogWrite(tvled, 30);
@@ -74,8 +74,8 @@ void serial_read_if(void){
     if (odebraneDane == "tv8") analogWrite(tvled, 80);
     if (odebraneDane == "tv9") analogWrite(tvled, 90);
     if (odebraneDane == "tv10") analogWrite(tvled, 100);
-    if (odebraneDane == "tvoff") analogWrite(tvled, (0);
-    if (odebraneDane == "tvfull") analogWrite(tvled, (100);
+    if (odebraneDane == "tvoff") analogWrite(tvled, 0);
+    if (odebraneDane == "tvfull") analogWrite(tvled, 100);
 
 
     if (odebraneDane == "tvon") {
