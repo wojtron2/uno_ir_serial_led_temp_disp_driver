@@ -16,6 +16,8 @@
 //#define kanal kanaladc
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(300, PINLED1, NEO_GRB + NEO_KHZ800);
+	
+String odebraneDane = "";
 
 void setup() {
   strip.begin();
@@ -58,9 +60,22 @@ void serial_read_if(void){
     if (odebraneDane == "s8") strip.setBrightness(80);
     if (odebraneDane == "s9") strip.setBrightness(90);
     if (odebraneDane == "s10") strip.setBrightness(100);
-    if (odebraneDane == "s0") strip.setBrightness(0)
+    if (odebraneDane == "s0") strip.setBrightness(0);
     if (odebraneDane == "sufitoff") strip.setBrightness(0);
 
+    if (odebraneDane == "tv0") strip.setBrightness(0);
+    if (odebraneDane == "tv1") strip.setBrightness(10);
+    if (odebraneDane == "tv2") strip.setBrightness(20);
+    if (odebraneDane == "tv3") strip.setBrightness(30);
+    if (odebraneDane == "tv4") strip.setBrightness(40);
+    if (odebraneDane == "tv5") strip.setBrightness(50);
+    if (odebraneDane == "tv6") strip.setBrightness(60);
+    if (odebraneDane == "tv7") strip.setBrightness(70);
+    if (odebraneDane == "tv8") strip.setBrightness(80);
+    if (odebraneDane == "tv9") strip.setBrightness(90);
+    if (odebraneDane == "tv10") strip.setBrightness(100);
+    if (odebraneDane == "tvoff") strip.setBrightness(0);
+    if (odebraneDane == "tvfull") strip.setBrightness(100);
 
 
     if (odebraneDane == "tvon") {
