@@ -1,11 +1,16 @@
+#include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
   #include <avr/power.h>
 #endif
+#include "PinDefinitionsAndMore.h" //Define macros for input and output pin etc.
+#include <IRremote.hpp>
+
+
 
 #define PINLED1 13
 #define NUM_LEDS 300
-#define tvled 
+#define tvled 6
 #define pinIR 2
 
 //#define kanal kanaladc
@@ -17,6 +22,7 @@ void setup() {
   strip.setBrightness(0);
   strip.show(); // Initialize all pixels to 'off'
   Serial.begin(115200);
+  attachInterrupt(digitalPinToInterrupt(pinIR), IR_receive_function, CHANGE);
 
   //strip2.begin();
   //strip2.setBrightness(100);
@@ -80,3 +86,66 @@ void serial_read_if(void){
   }
 }
 
+
+
+
+
+//pomyslec nad przeniesieniem do oddzielnego .ino lub .cpp
+
+void IR_receive_function() {
+    /*
+     * Check if received data is available and if yes, try to decode it.
+     * Decoded result is in the IrReceiver.decodedIRData structure.
+     *
+     * E.g. command is in IrReceiver.decodedIRData.command
+     * address is in command is in IrReceiver.decodedIRData.address
+     * and up to 32 bit raw data in IrReceiver.decodedIRData.decodedRawData
+     */
+    if (IrReceiver.decode()) {
+
+        // Print a short summary of received data
+        IrReceiver.printIRResultShort(&Serial);
+        if (IrReceiver.decodedIRData.protocol == UNKNOWN) {
+            Serial.println(F("Received noise or an unknown (or not yet enabled) protocol"));
+            // We have an unknown protocol here, print more info
+            IrReceiver.printIRResultRawFormatted(&Serial, true);
+        }
+        Serial.println();
+
+        /*
+         * !!!Important!!! Enable receiving of the next value,
+         * since receiving has stopped after the end of the current received data packet.
+         */
+        IrReceiver.resume(); // Enable receiving of the next value
+
+        /*
+         * Finally, check the received data and perform actions according to the received command
+         */
+        if (IrReceiver.decodedIRData.command == 0x5E) {
+        //    digitalWrite(3, HIGH);   // turn the LED on (HIGH is the voltage level)
+        } else if (IrReceiver.decodedIRData.command == 0xC) {
+        //    digitalWrite(3, LOW);    // turn the LED off by making the voltage LOW
+        }
+        else if (IrReceiver.decodedIRData.command == 0x4D) {
+            strip.setBrightness(100);
+        }
+        else if (IrReceiver.decodedIRData.command == 0xD) {
+            strip.setBrightness(0);
+        }
+        else if (IrReceiver.decodedIRData.command == 0x9) {
+            colorWipe(strip.Color(255, 0, 0), 20); // Red
+        }
+        else if (IrReceiver.decodedIRData.command == 0x8) {
+            colorWipe(strip.Color(0, 255, 0), 20); // Green
+        }
+        else if (IrReceiver.decodedIRData.command == 0x4A) {
+            colorWipe(strip.Color(0, 0, 255), 20); // Blue
+        }
+        else if (IrReceiver.decodedIRData.command == 0x49) {
+            rainbow(1);
+        }
+        else if (IrReceiver.decodedIRData.command == 0x52) {
+            rainbowCycle(1);
+        }
+    }
+}
