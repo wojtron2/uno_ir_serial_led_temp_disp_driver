@@ -27,7 +27,7 @@ String odebraneDane = "";
 
 void setup() {
   strip.begin();
-  strip.setBrightness(0);
+  strip.setBrightness(1);
   strip.show(); // Initialize all pixels to 'off'
   Serial.begin(115200);
 
@@ -41,7 +41,7 @@ void setup() {
 //  attachInterrupt (digitalPinToInterrupt (BUTTON), changeEffect, CHANGE); // pressed
   //attachInterrupt(0, changeEffect, CHANGE);
 
-  //setAll(100, 0, 255);
+  setAll(1, 1, 1);
   Serial.println("READY");
 }
 
@@ -66,7 +66,16 @@ void serial_read_if(void){
     if (odebraneDane == "son") { strip.setBrightness(20); Serial.println("son (brightness 20)"); }
     if (odebraneDane == "sufitoff") strip.setBrightness(0);
     if (odebraneDane == "soff") { strip.setBrightness(0); Serial.println("soff (brightness 0)"); }
-    if (odebraneDane == "s0") setbrightness(0);
+    if (odebraneDane == "s0") setAll(1, 0, 0);
+    if (odebraneDane == "s01") setbrightness(1);
+    if (odebraneDane == "s02") setbrightness(2);
+    if (odebraneDane == "s03") setbrightness(3);
+    if (odebraneDane == "s04") setbrightness(4);
+    if (odebraneDane == "s05") setbrightness(5);
+    if (odebraneDane == "s06") setbrightness(6);
+    if (odebraneDane == "s07") setbrightness(7);
+    if (odebraneDane == "s08") setbrightness(8);
+    if (odebraneDane == "s09") setbrightness(9);
     if (odebraneDane == "s1") setbrightness(10);
     if (odebraneDane == "s2") setbrightness(20);
     if (odebraneDane == "s3") setbrightness(30);
@@ -111,6 +120,29 @@ void serial_read_if(void){
 
     if (odebraneDane == "rainbow") { rainbow(50); Serial.println("rainbow"); }
     if (odebraneDane == "r") { rainbow(50); Serial.println("rainbow"); }
+
+    if (odebraneDane == "r01") { setbrightness(1); rainbow(50); Serial.println("rainbow r01"); }
+    if (odebraneDane == "r02") { setbrightness(2); rainbow(50); Serial.println("rainbow r02"); }
+    if (odebraneDane == "r03") { setbrightness(3); rainbow(50); Serial.println("rainbow r03"); }
+    if (odebraneDane == "r04") { setbrightness(4); rainbow(50); Serial.println("rainbow r04"); }
+    if (odebraneDane == "r05") { setbrightness(5); rainbow(50); Serial.println("rainbow r05"); }
+    if (odebraneDane == "r06") { setbrightness(6); rainbow(50); Serial.println("rainbow r06"); }
+    if (odebraneDane == "r07") { setbrightness(7); rainbow(50); Serial.println("rainbow r07"); }
+    if (odebraneDane == "r08") { setbrightness(8); rainbow(50); Serial.println("rainbow r08"); }
+    if (odebraneDane == "r09") { setbrightness(9); rainbow(50); Serial.println("rainbow r09"); }
+    if (odebraneDane == "r1") { setbrightness(10); rainbow(50); Serial.println("rainbow r1"); }
+    if (odebraneDane == "r10") { setbrightness(10); rainbow(50); Serial.println("rainbow r1"); }
+    if (odebraneDane == "r15") { setbrightness(15); rainbow(50); Serial.println("rainbow r15"); }
+    if (odebraneDane == "r2") { setbrightness(20); rainbow(50); Serial.println("rainbow r2"); }
+    if (odebraneDane == "r20") { setbrightness(20); rainbow(50); Serial.println("rainbow r20"); }
+    if (odebraneDane == "r4") { setbrightness(40); rainbow(50); Serial.println("rainbow r4"); }
+    if (odebraneDane == "r40") { setbrightness(40); rainbow(50); Serial.println("rainbow r40"); }
+    if (odebraneDane == "r5") { setbrightness(50); rainbow(50); Serial.println("rainbow r5"); }
+    if (odebraneDane == "r50") { setbrightness(50); rainbow(50); Serial.println("rainbow r50"); }
+    if (odebraneDane == "r10") { setbrightness(10); rainbow(50); Serial.println("rainbow r10"); }
+    if (odebraneDane == "r100") { setbrightness(10); rainbow(50); Serial.println("rainbow r100"); }
+
+    
 
 
     if (odebraneDane == "tvon") {

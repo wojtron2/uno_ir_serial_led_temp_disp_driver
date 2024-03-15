@@ -45,7 +45,7 @@ void rainbow(uint8_t wait) {
     strip.show();
 
 
-serial_read_if();
+//serial_read_if();
   //  if rain_rainbow == 1 { break_rainbow = 0; Serial.println("break"); break; }
     delay(wait);
   }
