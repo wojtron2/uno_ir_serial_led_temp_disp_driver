@@ -67,16 +67,17 @@ void serial_read_if(void){
     if (odebraneDane == "sufitoff") strip.setBrightness(0);
     if (odebraneDane == "soff") { strip.setBrightness(0); Serial.println("soff (brightness 0)"); }
     if (odebraneDane == "s0") setbrightness(0);
-    if (odebraneDane == "s1") strip.setBrightness(10);
+    if (odebraneDane == "s1") setbrightness(10);
     if (odebraneDane == "s2") setbrightness(20);
-    if (odebraneDane == "s3") strip.setBrightness(30);
-    if (odebraneDane == "s4") strip.setBrightness(40);
-    if (odebraneDane == "s5") strip.setBrightness(50);
-    if (odebraneDane == "s6") strip.setBrightness(60);
-    if (odebraneDane == "s7") strip.setBrightness(70);
-    if (odebraneDane == "s8") strip.setBrightness(80);
-    if (odebraneDane == "s9") strip.setBrightness(90);
-    if (odebraneDane == "s10") strip.setBrightness(100);
+    if (odebraneDane == "s3") setbrightness(30);
+    if (odebraneDane == "s4") setbrightness(40);
+    if (odebraneDane == "s5") setbrightness(50);
+    if (odebraneDane == "s6") setbrightness(60);
+    //if (odebraneDane == "s6") strip.setBrightness(60);
+    if (odebraneDane == "s7") setbrightness(70);
+    if (odebraneDane == "s8") setbrightness(80);
+    if (odebraneDane == "s9") setbrightness(90);
+    if (odebraneDane == "s10") setbrightness(100);
     if (odebraneDane == "sufitfull") strip.setBrightness(100);
 
     if (odebraneDane == "tvoff") analogWrite(tvled, 0);
@@ -97,8 +98,19 @@ void serial_read_if(void){
 
 
     if (odebraneDane == "magenta") { setAll(100, 0, 255); Serial.println("magenta color"); }
+    if (odebraneDane == "m1") { setAll(100, 0, 255); Serial.println("magenta color"); }
+    if (odebraneDane == "m2") { setAll(125, 0, 255); Serial.println("magenta 2 color"); }
+    if (odebraneDane == "m3") { setAll(155, 0, 255); Serial.println("magenta 3 color"); }
+    if (odebraneDane == "p1") { setAll(255, 0, 255); Serial.println("pink 1"); }
+    if (odebraneDane == "p2") { setAll(255, 0, 235); Serial.println("pink 2"); }
+    if (odebraneDane == "p3") { setAll(255, 0, 215); Serial.println("pink 3"); }
+    if (odebraneDane == "p4") { setAll(255, 0, 185); Serial.println("pink 4"); }
+    if (odebraneDane == "p5") { setAll(255, 0, 135); Serial.println("pink 5"); }
+    if (odebraneDane == "white") { setAll(255, 255, 200); Serial.println("warm white"); }
+    if (odebraneDane == "whitec") { setAll(255, 255, 255); Serial.println("cold white"); }
 
     if (odebraneDane == "rainbow") { rainbow(50); Serial.println("rainbow"); }
+    if (odebraneDane == "r") { rainbow(50); Serial.println("rainbow"); }
 
 
     if (odebraneDane == "tvon") {
