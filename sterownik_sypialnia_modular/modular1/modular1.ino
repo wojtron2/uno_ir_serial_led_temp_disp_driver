@@ -60,12 +60,12 @@ void serial_read_if(void){
     odebraneDane = Serial.readStringUntil('\n'); 
     
     if (odebraneDane == "sufiton") strip.setBrightness(20);
-    if (odebraneDane == "son") strip.setBrightness(20);
+    if (odebraneDane == "son") { strip.setBrightness(20); Serial.println("son (brightness 20)"); }
     if (odebraneDane == "sufitoff") strip.setBrightness(0);
-    if (odebraneDane == "soff") strip.setBrightness(0);
+    if (odebraneDane == "soff") { strip.setBrightness(0); Serial.println("soff (brightness 0)"); }
     if (odebraneDane == "s0") strip.setBrightness(0);
     if (odebraneDane == "s1") strip.setBrightness(10);
-    if (odebraneDane == "s2") strip.setBrightness(20);
+    if (odebraneDane == "s2") { strip.setBrightness(20); Serial.println("s2 (brightness 20)"); }
     if (odebraneDane == "s3") strip.setBrightness(30);
     if (odebraneDane == "s4") strip.setBrightness(40);
     if (odebraneDane == "s5") strip.setBrightness(50);
