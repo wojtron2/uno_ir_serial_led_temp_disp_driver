@@ -43,7 +43,10 @@ void rainbow(uint8_t wait) {
       strip.setPixelColor(i, Wheel((i+j) & 255));
     }
     strip.show();
+
+
 serial_read_if();
+  //  if rain_rainbow == 1 { break_rainbow = 0; Serial.println("break"); break; }
     delay(wait);
   }
 }
@@ -74,6 +77,11 @@ uint32_t Wheel(byte WheelPos) {
   return strip.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
 }
 
-
+void setbrightness (int setbrightness_val) {
+  strip.setBrightness(setbrightness_val);
+  showStrip();
+  Serial.print("jasnosc ");
+  Serial.println(setbrightness_val);
+}
 
 

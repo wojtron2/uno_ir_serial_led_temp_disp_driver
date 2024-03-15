@@ -31,8 +31,8 @@ void setup() {
   strip.show(); // Initialize all pixels to 'off'
   Serial.begin(115200);
 
-  attachInterrupt(digitalPinToInterrupt(pinIR), IR_receive_function, CHANGE);
-  pinMode(tvled, INPUT_PULLUP);
+//attachInterrupt(digitalPinToInterrupt(pinIR), IR_receive_function, CHANGE);
+  //pinMode(tvled, INPUT_PULLUP);
 
   //strip2.begin();
   //strip2.setBrightness(100);
@@ -42,6 +42,7 @@ void setup() {
   //attachInterrupt(0, changeEffect, CHANGE);
 
   //setAll(100, 0, 255);
+  Serial.println("READY");
 }
 
 
@@ -53,19 +54,21 @@ serial_read_if();
 
   }
 
+bool break_rainbow = 0;
 
 void serial_read_if(void){
  if(Serial.available() > 0) { //Czy Arduino odebrało dane
     //Jeśli tak, to odczytujemy je do znaku końca linii i zapisz w zmiennej odebraneDane
     odebraneDane = Serial.readStringUntil('\n'); 
     
+    
     if (odebraneDane == "sufiton") strip.setBrightness(20);
     if (odebraneDane == "son") { strip.setBrightness(20); Serial.println("son (brightness 20)"); }
     if (odebraneDane == "sufitoff") strip.setBrightness(0);
     if (odebraneDane == "soff") { strip.setBrightness(0); Serial.println("soff (brightness 0)"); }
-    if (odebraneDane == "s0") strip.setBrightness(0);
+    if (odebraneDane == "s0") setbrightness(0);
     if (odebraneDane == "s1") strip.setBrightness(10);
-    if (odebraneDane == "s2") { strip.setBrightness(20); Serial.println("s2 (brightness 20)"); }
+    if (odebraneDane == "s2") setbrightness(20);
     if (odebraneDane == "s3") strip.setBrightness(30);
     if (odebraneDane == "s4") strip.setBrightness(40);
     if (odebraneDane == "s5") strip.setBrightness(50);
@@ -89,6 +92,9 @@ void serial_read_if(void){
     if (odebraneDane == "tv9") analogWrite(tvled, 90);
     if (odebraneDane == "tv10") analogWrite(tvled, 100);
     if (odebraneDane == "tvfull") analogWrite(tvled, 100);
+
+    if (odebraneDane == "break") break_rainbow = 1;
+
 
     if (odebraneDane == "magenta") { setAll(100, 0, 255); Serial.println("magenta color"); }
 
