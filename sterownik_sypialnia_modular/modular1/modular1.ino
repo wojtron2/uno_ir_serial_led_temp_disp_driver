@@ -19,6 +19,8 @@
 
 //#define kanal kanaladc
 
+//  !!! DODAC INTERRUPT NA PIN RX UARTA ??
+
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(300, PINLED1, NEO_GRB + NEO_KHZ800);
 	
 String odebraneDane = "";
@@ -38,6 +40,8 @@ void setup() {
 //  pinMode(BUTTON, INPUT_PULLUP); // internal pull-up resistor
 //  attachInterrupt (digitalPinToInterrupt (BUTTON), changeEffect, CHANGE); // pressed
   //attachInterrupt(0, changeEffect, CHANGE);
+
+  //setAll(100, 0, 255);
 }
 
 
@@ -56,7 +60,9 @@ void serial_read_if(void){
     odebraneDane = Serial.readStringUntil('\n'); 
     
     if (odebraneDane == "sufiton") strip.setBrightness(20);
+    if (odebraneDane == "son") strip.setBrightness(20);
     if (odebraneDane == "sufitoff") strip.setBrightness(0);
+    if (odebraneDane == "soff") strip.setBrightness(0);
     if (odebraneDane == "s0") strip.setBrightness(0);
     if (odebraneDane == "s1") strip.setBrightness(10);
     if (odebraneDane == "s2") strip.setBrightness(20);
@@ -83,6 +89,10 @@ void serial_read_if(void){
     if (odebraneDane == "tv9") analogWrite(tvled, 90);
     if (odebraneDane == "tv10") analogWrite(tvled, 100);
     if (odebraneDane == "tvfull") analogWrite(tvled, 100);
+
+    if (odebraneDane == "magenta") { setAll(100, 0, 255); Serial.println("magenta color"); }
+
+    if (odebraneDane == "rainbow") { rainbow(50); Serial.println("rainbow"); }
 
 
     if (odebraneDane == "tvon") {
