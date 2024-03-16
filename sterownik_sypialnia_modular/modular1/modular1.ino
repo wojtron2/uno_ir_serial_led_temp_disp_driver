@@ -57,9 +57,9 @@ serial_read_if();
 
 bool break_rainbow = 0;
 
-//poprawic serial available na co innego, dac non blocking
+//do seriala dodano volatile, sprawdzic czy pomaga na wieszanie
 
-void serial_read_if(void){
+volatile void serial_read_if(void){
  if(Serial.available() > 0) { //Czy Arduino odebrało dane
     //Jeśli tak, to odczytujemy je do znaku końca linii i zapisz w zmiennej odebraneDane
     odebraneDane = Serial.readStringUntil('\n'); 
@@ -129,27 +129,54 @@ void serial_read_if(void){
     Serial.println("cold white"); }
 
     if (odebraneDane == "rainbow") { rainbow(50); Serial.println("rainbow"); }
-    if (odebraneDane == "r") { rainbow(50); Serial.println("rainbow"); }
+    //if (odebraneDane == "r") { rainbow(50); Serial.println("rainbow"); }
 
 
     //kod ponizej wieszal serial
-    /*
-    if (odebraneDane == "r01") { setbrightness(1); rainbow(50); Serial.println("rainbow r01"); }
-    if (odebraneDane == "r02") { setbrightness(2); rainbow(50); Serial.println("rainbow r02"); }
-    if (odebraneDane == "r03") { setbrightness(3); rainbow(50); Serial.println("rainbow r03"); }
-    if (odebraneDane == "r04") { setbrightness(4); rainbow(50); Serial.println("rainbow r04"); }
-    if (odebraneDane == "r05") { setbrightness(5); rainbow(50); Serial.println("rainbow r05"); }
-    if (odebraneDane == "r06") { setbrightness(6); rainbow(50); Serial.println("rainbow r06"); }
-    if (odebraneDane == "r07") { setbrightness(7); rainbow(50); Serial.println("rainbow r07"); }
-    if (odebraneDane == "r08") { setbrightness(8); rainbow(50); Serial.println("rainbow r08"); }
-    if (odebraneDane == "r09") { setbrightness(9); rainbow(50); Serial.println("rainbow r09"); }
-    if (odebraneDane == "r10") { setbrightness(10); rainbow(50); Serial.println("rainbow r1"); }
-    if (odebraneDane == "r15") { setbrightness(15); rainbow(50); Serial.println("rainbow r15"); }
-    if (odebraneDane == "r20") { setbrightness(20); rainbow(50); Serial.println("rainbow r20"); }
-    if (odebraneDane == "r40") { setbrightness(40); rainbow(50); Serial.println("rainbow r40"); }
-    if (odebraneDane == "r50") { setbrightness(50); rainbow(50); Serial.println("rainbow r50"); }
-    if (odebraneDane == "r100") { setbrightness(10); rainbow(50); Serial.println("rainbow r100"); }
+    /* albo problem s serial printem - on blokuje prawdopodobnie
+    albo problem z brakiem delaya po ustawieniu jasnosci
+    albo problem ze funkcje nie sa w oddzielnym pliku a zmienna nie jest global?
+    zapelnia sie bufor seriala tez, warunek ifa w serial read tez moze blokowac
 
+
+    
+    /*
+
+    //if (odebraneDane == "r01") { setbrightness(1); rainbow(50); Serial.println("rainbow r01"); }
+    if (odebraneDane == "r02") { 
+    setbrightness(2); 
+    
+    rainbow(50);
+    Serial.println("rainbow r02"); }
+
+    if (odebraneDane == "r03") { 
+    setbrightness(3); 
+    rainbow(50); 
+    Serial.println("rainbow r03"); }
+
+    if (odebraneDane == "r04") { 
+    setbrightness(4); 
+    rainbow(50); 
+    Serial.println("rainbow r04"); }
+
+    if (odebraneDane == "r05") { 
+    setbrightness(5); 
+    rainbow(50); 
+    Serial.println("rainbow r05"); }
+
+    if (odebraneDane == "r06") { setbrightness(6); 
+    rainbow(50); 
+    Serial.println("rainbow r06"); }
+    //if (odebraneDane == "r07") { setbrightness(7); rainbow(50); Serial.println("rainbow r07"); }
+    //if (odebraneDane == "r08") { setbrightness(8); rainbow(50); Serial.println("rainbow r08"); }
+    //if (odebraneDane == "r09") { setbrightness(9); rainbow(50); Serial.println("rainbow r09"); }
+    //if (odebraneDane == "r1") { setbrightness(10); rainbow(50); Serial.println("rainbow r10"); }
+    //if (odebraneDane == "r15") { setbrightness(15); rainbow(50); Serial.println("rainbow r15"); }
+    //if (odebraneDane == "r20") { setbrightness(20); rainbow(50); Serial.println("rainbow r20"); }
+    //if (odebraneDane == "r40") { setbrightness(40); rainbow(50); Serial.println("rainbow r40"); }
+    //if (odebraneDane == "r50") { setbrightness(50); rainbow(50); Serial.println("rainbow r50"); }
+    //if (odebraneDane == "r100") { setbrightness(100); rainbow(50); Serial.println("rainbow r100"); }
+    
     */
 
 
