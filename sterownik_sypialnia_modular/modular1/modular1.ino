@@ -41,7 +41,8 @@ void setup() {
 //  attachInterrupt (digitalPinToInterrupt (BUTTON), changeEffect, CHANGE); // pressed
   //attachInterrupt(0, changeEffect, CHANGE);
 
-  setAll(1, 1, 1);
+
+  //setAll(1, 1, 1);
   Serial.println("READY");
 }
 
@@ -56,6 +57,8 @@ serial_read_if();
 
 bool break_rainbow = 0;
 
+//poprawic serial available na co innego, dac non blocking
+
 void serial_read_if(void){
  if(Serial.available() > 0) { //Czy Arduino odebrało dane
     //Jeśli tak, to odczytujemy je do znaku końca linii i zapisz w zmiennej odebraneDane
@@ -65,7 +68,11 @@ void serial_read_if(void){
     if (odebraneDane == "sufiton") strip.setBrightness(20);
     if (odebraneDane == "son") { strip.setBrightness(20); Serial.println("son (brightness 20)"); }
     if (odebraneDane == "sufitoff") strip.setBrightness(0);
-    if (odebraneDane == "soff") { strip.setBrightness(0); Serial.println("soff (brightness 0)"); }
+
+    if (odebraneDane == "soff") { 
+    strip.setBrightness(0); 
+    Serial.println("soff (brightness 0)"); 
+    }
     if (odebraneDane == "s0") setAll(1, 0, 0);
     if (odebraneDane == "s01") setbrightness(1);
     if (odebraneDane == "s02") setbrightness(2);
@@ -115,12 +122,18 @@ void serial_read_if(void){
     if (odebraneDane == "p3") { setAll(255, 0, 215); Serial.println("pink 3"); }
     if (odebraneDane == "p4") { setAll(255, 0, 185); Serial.println("pink 4"); }
     if (odebraneDane == "p5") { setAll(255, 0, 135); Serial.println("pink 5"); }
-    if (odebraneDane == "white") { setAll(255, 255, 200); Serial.println("warm white"); }
-    if (odebraneDane == "whitec") { setAll(255, 255, 255); Serial.println("cold white"); }
+
+    if (odebraneDane == "white") { setAll(255, 255, 200); 
+    Serial.println("warm white"); }
+    if (odebraneDane == "whitec") { setAll(255, 255, 255); 
+    Serial.println("cold white"); }
 
     if (odebraneDane == "rainbow") { rainbow(50); Serial.println("rainbow"); }
     if (odebraneDane == "r") { rainbow(50); Serial.println("rainbow"); }
 
+
+    //kod ponizej wieszal serial
+    /*
     if (odebraneDane == "r01") { setbrightness(1); rainbow(50); Serial.println("rainbow r01"); }
     if (odebraneDane == "r02") { setbrightness(2); rainbow(50); Serial.println("rainbow r02"); }
     if (odebraneDane == "r03") { setbrightness(3); rainbow(50); Serial.println("rainbow r03"); }
@@ -130,19 +143,14 @@ void serial_read_if(void){
     if (odebraneDane == "r07") { setbrightness(7); rainbow(50); Serial.println("rainbow r07"); }
     if (odebraneDane == "r08") { setbrightness(8); rainbow(50); Serial.println("rainbow r08"); }
     if (odebraneDane == "r09") { setbrightness(9); rainbow(50); Serial.println("rainbow r09"); }
-    if (odebraneDane == "r1") { setbrightness(10); rainbow(50); Serial.println("rainbow r1"); }
     if (odebraneDane == "r10") { setbrightness(10); rainbow(50); Serial.println("rainbow r1"); }
     if (odebraneDane == "r15") { setbrightness(15); rainbow(50); Serial.println("rainbow r15"); }
-    if (odebraneDane == "r2") { setbrightness(20); rainbow(50); Serial.println("rainbow r2"); }
     if (odebraneDane == "r20") { setbrightness(20); rainbow(50); Serial.println("rainbow r20"); }
-    if (odebraneDane == "r4") { setbrightness(40); rainbow(50); Serial.println("rainbow r4"); }
     if (odebraneDane == "r40") { setbrightness(40); rainbow(50); Serial.println("rainbow r40"); }
-    if (odebraneDane == "r5") { setbrightness(50); rainbow(50); Serial.println("rainbow r5"); }
     if (odebraneDane == "r50") { setbrightness(50); rainbow(50); Serial.println("rainbow r50"); }
-    if (odebraneDane == "r10") { setbrightness(10); rainbow(50); Serial.println("rainbow r10"); }
     if (odebraneDane == "r100") { setbrightness(10); rainbow(50); Serial.println("rainbow r100"); }
 
-    
+    */
 
 
     if (odebraneDane == "tvon") {

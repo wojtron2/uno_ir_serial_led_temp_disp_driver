@@ -80,8 +80,8 @@ uint32_t Wheel(byte WheelPos) {
 void setbrightness (int setbrightness_val) {
   strip.setBrightness(setbrightness_val);
   showStrip();
-  Serial.print("jasnosc ");
-  Serial.println(setbrightness_val);
+  //Serial.print("jasnosc ");
+  //Serial.println(setbrightness_val);
 }
 
 
